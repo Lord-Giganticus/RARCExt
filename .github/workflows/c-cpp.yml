@@ -1,0 +1,24 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: egor-tensin/setup-mingw@v2
+    - shell: cmd
+      run: |
+        g++ -O2 -s -DNDEBGU -o RARCExt.exe *.cpp
+    - uses: actions/upload-artifact@v2.2.3
+      with:
+        name: Build
+        path: |
+          *.exe
