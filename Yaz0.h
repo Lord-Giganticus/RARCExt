@@ -3,7 +3,7 @@
 namespace Yaz0 {
     u8* Decode(u8* data, u32& size) {
         if (data[0] != 'Y' || data[1] != 'a' || data[2] != 'z' || data[3] != '0') {
-            return nullptr;
+            return data;
         }
         auto fullsize = (data[4] << 24) | (data[5] << 16) | (data[6] << 8) | data[7];
         u8* output = new u8[fullsize];
