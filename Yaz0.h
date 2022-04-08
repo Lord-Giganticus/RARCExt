@@ -38,3 +38,9 @@ namespace Yaz0 {
         return output;
     }
 }
+
+namespace Rarc {
+    u8* RARCFile::Decompress(u32& size) {
+        return Yaz0::Decode(Data, size);
+    } 
+}

@@ -57,7 +57,9 @@ namespace Rarc {
         RARCFile(BinaryReader* reader);
         void Save();
         void Replace(const string& path);
+        void Replace(u8* data, u32 size);
         const u8* Compress(u32* size);
+        u8* Decompress(u32& size);
     };
 
     struct RARCDirectory {

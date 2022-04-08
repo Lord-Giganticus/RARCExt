@@ -73,6 +73,11 @@ namespace Rarc {
         Size = size;
     }
 
+    void RARCFile::Replace(u8* data, u32 size) {
+        Data = data;
+        Size = size;
+    }
+
     const u8* RARCFile::Compress(u32* size) {
         return JKRCompression::encodeSZS(Data, Size, size);
     }
