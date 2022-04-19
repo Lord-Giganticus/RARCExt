@@ -16,9 +16,14 @@ int main(int argc, char* argv[]) {
             UnpackRarc(argv[i]);
         } else if (is_dir(argv[i])) {
             char* name;
-            cout << "Enter a name for the archive:\n";
-            cin >> name;
+            if (argv[i + 1] == nullptr) {
+                cout << "Enter a name for the archive:\n";
+                cin >> name;
+            } else {
+                name = argv[i + 1];
+            }
             PackRarc(argv[i], name);
+            i += 2;
         }
     }
 }
