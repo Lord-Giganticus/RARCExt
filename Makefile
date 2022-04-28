@@ -1,7 +1,16 @@
 Include_Dir := Include
 
-all: 
-	g++ -c Source/*.cpp -Os -I $(Include_Dir)
-	ar src RARCExt.a *.o
-	rm *.o
-	g++ Main.cpp RARCExt.a -o RARCExt
+CPPFILES := $(foreach dir,Source,$(wildcard $(dir)/*.cpp))
+OBJECTS = $(patsubst Source/%.cpp, %.o, $(CPPFILES))
+
+all: RARCExt
+
+RARCExt: Main.cpp RARCExt.a
+	g++ $^ -o $@
+
+RARCExt.a: $(OBJECTS)
+	ar src $@ $^
+	rm $^
+
+$(OBJECTS): $(CPPFILES)
+	g++ -c $^ -Os -I $(Include_Dir)
